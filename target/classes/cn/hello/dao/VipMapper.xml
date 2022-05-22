@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hello.dao.VipMapper">
+    <!--    //一个mapper对应一个接口-->
+    <insert id="addVip" parameterType="Vip">
+        insert into vip(vipId,vipName,vipNumber,vipGender,vipState,vipBalance,vipGrade)
+        values (#{vipId},#{vipName},#{vipNumber},#{vipGender},#{vipState},#{vipBalance},#{vipGrade})
+    </insert>
+    <delete id="deleteVipByNumber" >
+        delete from vip where vipNumber =#{vipNumber}
+    </delete>
+    <update id="updateVip" parameterType="Vip">
+        update vip set vipId=#{vipId},vipName=#{vipName},vipNumber=#{vipNumber},vipGender=#{vipGender},vipState=#{vipState},vipBalance=#{vipBalance},vipGrade=#{vipGrade}
+        where vipId=#{vipId};
+    </update>
+    <select id="queryVipByNumber" resultType="Vip">
+        select * from vip where vipNumber like concat('%',#{vipNumber},'%')
+    </select>
+    <select id="queryVipById" resultType="Vip">
+        select * from vip where vipId = #{vipId}
+    </select>
+    <select id="queryAllVip" resultType="Vip">
+        select * from vip order by vipId ASC
+    </select>
+    <!--    这里的resultType写成了resultMap-->
+    <select id="queryVipByName" resultType="Vip">
+        select * from vip where vipName like concat('%',#{vipName},'%')
+    </select>
+    <!--    写完了下一步就要在mybatis里增加一个mapper映射-->
+</mapper>

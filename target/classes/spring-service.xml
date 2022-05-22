@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd">
+<!--首先，扫描service下的包-->
+    <context:component-scan base-package="cn.hello.service"></context:component-scan>
+<!--其次，将所有业务类注入到Spring，可以通过配置，或者注解实现-->
+    <bean id="VipServiceImpl" class="cn.hello.service.VipServiceImpl">
+        <property name="vipMapper" ref="vipMapper"/>
+<!--        //链接的是vipserviceimpl里面的-->
+    </bean>
+    <bean id="AdminServiceImpl" class="cn.hello.service.AdminServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+        <!--        //链接的是vipserviceimpl里面的-->
+    </bean>
+    <bean id="transationManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<!--        注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

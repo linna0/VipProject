@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hello.dao.AdminMapper">
+    <!--    //一个mapper对应一个接口-->
+    <insert id="register"  parameterType="Admin1">
+        insert into admin1(adminId,adminName,adminPassword,adminEmail,adminNumber,adminRole,adminPhotoPath)
+        values (#{adminId},#{adminName},#{adminPassword},#{adminEmail},#{adminNumber},#{adminRole},#{adminPhotoPath})
+    </insert>
+</mapper>
